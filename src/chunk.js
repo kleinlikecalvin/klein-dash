@@ -1,11 +1,14 @@
-/*
- * @params {Array<any>} array
- * @params {number} [size=1] - length of chunk(s)
- * @returns {Array<any>}
+/**
+ * @param {Array<any>} array
+ * @param {number} [size=1] - length of chunk(s)
+ * @returns {Array<Array<any>>}
  */
+
 module.exports = function chunk(array, size) {
-  if (size <= 1) {
-    return array;
+  if (size === undefined) {
+    size = 1;
+  } else if (typeof size != "number" || size < 1) {
+    throw Error("Size must be a number greater than 0");
   }
 
   let newArray = [];
@@ -13,10 +16,10 @@ module.exports = function chunk(array, size) {
 
   for (let i = 0; i < array.length; i++) {
     if (chunk.length === size) {
-      newArray.push([chunk]);
+      newArray.push(chunk);
       chunk = [];
     }
-    chunk.push([array[i]]);
+    chunk.push(array[i]);
   }
 
   if (chunk.length) {
