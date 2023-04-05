@@ -16,10 +16,11 @@ function chunk(array, size) {
 
   for (let i = 0; i < array.length; i++) {
     if (chunk.length === size) {
-      newArray.push(chunk);
+      newArray.push([chunk]);
+      console.log(chunk);
       chunk = [];
     }
-    chunk.push(array[i]);
+    chunk.push([array[i]]);
   }
 
   if (chunk.length) {
