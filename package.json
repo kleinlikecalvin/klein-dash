@@ -4,7 +4,7 @@
   "description": "Working through Lodash functions to gain a better understanding of functional programming",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/kleinlikecalvin/klein-dash/issues"
   },
-  "homepage": "https://github.com/kleinlikecalvin/klein-dash#readme"
+  "homepage": "https://github.com/kleinlikecalvin/klein-dash#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "jest": "^29.5.0"
+  }
 }
