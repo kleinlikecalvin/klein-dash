@@ -10,8 +10,13 @@ module.exports = function flattenDeep(array) {
     if (!Array.isArray(array[i])) {
       finalArray.push(array[i]);
     } else {
-      let flattened = flattenDeep(array[i]);
-      flattened.forEach((element) => finalArray.push(element));
+      if (array[i].length <= 1) {
+        let oneElement = array[i][0];
+        finalArray.push(oneElement);
+      } else {
+        let flattened = flattenDeep(array[i]);
+        flattened.forEach((element) => finalArray.push(element));
+      }
     }
   }
   return finalArray;
