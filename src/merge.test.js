@@ -1,23 +1,50 @@
 const merge = require("./merge");
 describe("merge.js", () => {
-  test("default test", () => {
-    const result = merge({a: [{b: 2}, {d: 4}]}, {a: [{c: 3}, {e: 5}]});
+  test("less complex example", () => {
+    const actual = merge({ a: { b: 2, d: 4 } }, { a: { c: 3, e: 5 } });
+    const expected = {
+      a: { b: 2, c: 3, d: 4, e: 5 },
+    };
+    expect(actual).toEqual(expected);
+  });
+  test("less complex example", () => {
+    const actual = merge(
+      { a: { b: 2, c: { z: 3 }, d: 4 } },
+      { a: { /* */ c: { x: 3 }, e: 5 } }
+    );
+    const expected = {
+      a: { b: 2, c: { x: 3, z: 3 }, d: 4, e: 5 },
+    };
+    expect(actual).toEqual(expected);
+  });
+  test("lodash example", () => {
+    const actual = merge(
+      { a: [{ b: 2 }, { d: 4 }] },
+      { a: [{ c: 3 }, { e: 5 }] }
+    );
     const expected = {
       a: [
-        {b: 2, c: 3},
-        {d: 4, e: 5},
+        { b: 2, c: 3 },
+        { d: 4, e: 5 },
       ],
     };
-    expect(result).toEqual(expected);
+    expect(actual).toEqual(expected);
   });
-  test("test 2", () => {
-    const result = merge({a: 5}, {b: 5});
-    const expected = {a: 5, b: 5};
-    expect(result).toEqual(expected);
+  test("nikki example", () => {
+    const actual = merge(
+      { a: [{ b: 2 }, { d: 4 }] },
+      { a: [{ b: 3 }, { e: 5 }] }
+    );
+    const expected = {
+      a: [{ b: 3 }, { d: 4, e: 5 }],
+    };
+    expect(actual).toEqual(expected);
   });
-  test("test 3", () => {
-    const result = merge({a: [1]}, {a: [2]});
-    const expected = {a: [2]};
-    expect(result).toEqual(expect);
+  test("null example", () => {
+    const actual = merge({ a: null }, { a: [{ b: 3 }, { e: 5 }] });
+    const expected = {
+      a: [{ b: 3 }, { e: 5 }],
+    };
+    expect(actual).toEqual(expected);
   });
 });
